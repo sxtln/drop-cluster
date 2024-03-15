@@ -1,0 +1,25 @@
+name: "drop-cluster"
+description: "drop k8s cluster at sextillion.io platform"
+inputs:
+  cluster-id:
+    description: "id of the cluster to drop"
+  api-key:
+    description: "sextillion's api key"
+    required: true
+author: Sagi Forbes Nagar for Sextillion.io
+branding:
+  color: "purple"
+  icon: "minimize"
+runs:
+  using: "composite"
+  steps:
+    - name: prepare environment
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    - name: provision k8s cluster
+      id: drop-cluster
+      shell: bash
+      run: |
+        echo "dropping cluster ${{inputs.cluster-id}}"
+        python3 drop-cluster --cluster-id=${{inputs.cluster-id}} --apikey=${{inputs.api-key}}
