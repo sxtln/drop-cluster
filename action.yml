@@ -10,6 +10,8 @@ author: Sagi Forbes Nagar for Sextillion.io
 branding:
   color: "purple"
   icon: "minimize"
+  
+
 runs:
   using: "composite"
   steps:
@@ -22,4 +24,4 @@ runs:
       shell: bash
       run: |
         echo "dropping cluster ${{inputs.cluster-id}}"
-        python3 drop-cluster --cluster-id=${{inputs.cluster-id}} --apikey=${{inputs.api-key}}
+        python3 ${GITHUB_ACTION_PATH}/drop-cluster.py --cluster-id=${{inputs.cluster-id}} --apikey=${{inputs.api-key}}
